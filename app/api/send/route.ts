@@ -1,10 +1,12 @@
 // app/api/sendEmail/route.ts
 // import axios from 'axios';
 // import { NextResponse } from 'next/server';
-import EmailTemplate from '@/app/components/email_template';
+import EmailTemplate from '@/app/components/invoice_template';
+import { config } from '@/config';
 import { Resend } from 'resend';
 
-const resend = new Resend('re_2zckEyRG_2wK34AH3sggribwqSMgoiLS3');
+const apiKey = config.apiKey
+const resend = new Resend(apiKey);
 
 
 interface FormData {
