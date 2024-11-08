@@ -1,7 +1,7 @@
 // app/api/sendEmail/route.ts
 // import axios from 'axios';
 // import { NextResponse } from 'next/server';
-import EmailTemplate from '@/app/components/invoice_template';
+import InvoiceEmail from '@/app/components/invoice_template';
 import { config } from '@/config';
 import { Resend } from 'resend';
 
@@ -9,12 +9,30 @@ const apiKey = config.apiKey
 const resend = new Resend(apiKey);
 
 
-interface FormData {
-  name: string;
-  email: string;
-  message: string;
+
+interface InvoiceItem {
+	name: string;
+	description: string;
+	quantity: string;
+	rate: string;
+	amount: number;
 }
 
+interface FormData {
+	invoiceNo: string;
+	dueDate: string;
+	amountDue: number;
+	billTo: string;
+	shipTo: string;
+	shipDate: string;
+	shipVia: string;
+	terms: string;
+	items: InvoiceItem[];
+	subtotal: number;
+	shipping: number;
+	total: number;
+	message?: string;
+}
 // export async function POST(req: Request) {
 //   try {
 //     const secret = 're_X4xZCs2q_LE8RUh4aMc8uNqz2vySs3RgE'
@@ -49,26 +67,37 @@ interface FormData {
 
 
 export async function POST(req: Request) {
-  try {
-    const { name, email, message }: FormData = await req.json();
+	try {
+		const formData: FormData = await req.json()
 
-    const { data, error } = await resend.emails.send({
-      from: 'main@patrickaigbogun.me',
-      to: ['bigtechdomain@gmail.com'],
-      subject: "Hello world",
-      react: EmailTemplate({
-        firstName: name,
-        email: email,
-        message: message
-      }) as React.ReactElement,
-    });
 
-    if (error) {
-      return Response.json({ error }, { status: 500 });
-    }
+		const { data, error } = await resend.emails.send({
+			from: 'main@patrickaigbogun.me',
+			to: ['bigtechdomain@gmail.com'],
+			subject: `Invoice #${formData.invoiceNo}`,
+			react: InvoiceEmail({
+				invoiceNo: formData.invoiceNo,
+				dueDate: formData.dueDate,
+				amountDue: formData.amountDue,
+				billTo: formData.billTo,
+				shipTo: formData.shipTo,
+				shipDate: formData.shipDate,
+				shipVia: formData.shipVia,
+				terms: formData.terms,
+				items: formData.items,
+				subtotal: formData.subtotal,
+				shipping: formData.shipping,
+				total: formData.total,
+				message: formData.message
+			}) as React.ReactElement,
+		});
 
-    return Response.json({ data });
-  } catch (error) {
-    return Response.json({ error }, { status: 500 });
-  }
+		if (error) {
+			return Response.json({ error }, { status: 500 });
+		}
+
+		return Response.json({ data });
+	} catch (error) {
+		return Response.json({ error }, { status: 500 });
+	}
 }

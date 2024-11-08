@@ -304,6 +304,9 @@ const InvoicePage: React.FC = () => {
 					</div>
 				</div>
 			</div>
+			<button className='p-4' type="submit">
+				Add this invoice
+			</button>
 		</form>
 
 	);

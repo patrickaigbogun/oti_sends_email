@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-email/tailwind": "^1.0.2",
     "@sendgrid/mail": "^8.1.4",
     "axios": "^1.7.7",
     "next": "15.0.3",

@@ -1,215 +1,232 @@
-
-type InvoiceProps = {
-	firstName: string;
-	email: string;
-	message: string;
-}
-
-export const Invoice: React.FC<Readonly<InvoiceProps>> = ({ firstName, email, message }) => (
-	<div className="bg-gray-100 min-h-screen p-6">
-			<div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
-				{/* Header Section */}
-				<div className="flex justify-between items-start mb-8">
-					<div>
-						<div className="w-40 h-16 bg-gray-200 flex items-center justify-center mb-4">
-							<span className="text-gray-500">Your Logo</span>
-						</div>
-						<h1 className="text-2xl font-bold text-gray-800">INVOICE</h1>
-					</div>
-					<div className="text-right">
-						<p className="text-gray-600">Invoice No:
-							<input 
-								className="border rounded px-2 py-1"
-								value={invoiceData.invoiceNo}
-							onChange={(e) => handleInputChange('invoiceNo', e.target.value)}
-							/>
-						</p>
-						<div className="mt-2">
-							<input
-								type="date"
-								className="border rounded px-2 py-1"
-								value={invoiceData.dueDate}
-								onChange={(e) => handleInputChange('dueDate', e.target.value)}
-							/>
-						</div>
-						<div className="mt-2">
-							<input
-								type="number"
-								className="border rounded px-2 py-1"
-								placeholder="Amount Due"
-								value={invoiceData.amountDue}
-								onChange={(e) => handleInputChange('amountDue', e.target.value)}
-							/>
-						</div>
-					</div>
-				</div>
-
-				{/* Message Section */}
-				<div className="mb-8">
-					<textarea
-						className="w-full border rounded-lg p-4 h-24"
-						placeholder="Enter your message here..."
-						value={invoiceData.message}
-						onChange={(e) => handleInputChange('message', e.target.value)}
-					/>
-				</div>
-
-				{/* Billing Details */}
-				<div className="grid grid-cols-2 gap-8 mb-8">
-					<div>
-						<h3 className="font-bold mb-2">Bill To:</h3>
-						<textarea
-							className="w-full border rounded p-2 h-24"
-							value={invoiceData.billTo}
-							onChange={(e) => handleInputChange('billTo', e.target.value)}
-						/>
-					</div>
-					<div>
-						<h3 className="font-bold mb-2">Ship To:</h3>
-						<textarea
-							className="w-full border rounded p-2 h-24"
-							value={invoiceData.shipTo}
-							onChange={(e) => handleInputChange('shipTo', e.target.value)}
-						/>
-					</div>
-				</div>
-
-				{/* Shipping Details */}
-				<div className="grid grid-cols-3 gap-4 mb-8">
-					<div>
-						<label className="block text-sm font-medium text-gray-600">Ship Date</label>
-						<input
-							type="date"
-							className="w-full border rounded px-2 py-1 mt-1"
-							value={invoiceData.shipDate}
-							onChange={(e) => handleInputChange('shipDate', e.target.value)}
-						/>
-					</div>
-					<div>
-						<label className="block text-sm font-medium text-gray-600">Ship Via</label>
-						<input
-							type="text"
-							className="w-full border rounded px-2 py-1 mt-1"
-							value={invoiceData.shipVia}
-							onChange={(e) => handleInputChange('shipVia', e.target.value)}
-						/>
-					</div>
-					<div>
-						<label className="block text-sm font-medium text-gray-600">Terms</label>
-						<input
-							type="text"
-							className="w-full border rounded px-2 py-1 mt-1"
-							value={invoiceData.terms}
-							onChange={(e) => handleInputChange('terms', e.target.value)}
-						/>
-					</div>
-				</div>
-
-				{/* Order Details Table */}
-				<div className="overflow-x-auto mb-8">
-					<table className="w-full">
-						<thead>
-							<tr className="bg-gray-50">
-								<th className="px-4 py-2 text-left">Item</th>
-								<th className="px-4 py-2 text-left">Description</th>
-								<th className="px-4 py-2 text-right">Quantity</th>
-								<th className="px-4 py-2 text-right">Rate</th>
-								<th className="px-4 py-2 text-right">Amount</th>
-							</tr>
-						</thead>
-						<tbody>
-							{invoiceData.items.map((item, index) => (
-								<tr key={item.id} className="border-b">
-									<td className="px-4 py-2">
-										<input
-											type="text"
-											className="w-full border rounded px-2 py-1"
-											value={item.name}
-											onChange={(e) => handleItemChange(index, 'name', e.target.value)}
-										/>
-									</td>
-									<td className="px-4 py-2">
-										<input
-											type="text"
-											className="w-full border rounded px-2 py-1"
-											value={item.description}
-											onChange={(e) => handleItemChange(index, 'description', e.target.value)}
-										/>
-									</td>
-									<td className="px-4 py-2">
-										<input
-											type="number"
-											className="w-full border rounded px-2 py-1 text-right"
-											value={item.quantity}
-											onChange={(e) => handleItemChange(index, 'quantity', e.target.value)}
-										/>
-									</td>
-									<td className="px-4 py-2">
-										<input
-											type="number"
-											className="w-full border rounded px-2 py-1 text-right"
-											value={item.rate}
-											onChange={(e) => handleItemChange(index, 'rate', e.target.value)}
-										/>
-									</td>
-									<td className="px-4 py-2">
-										<input
-											type="number"
-											className="w-full border rounded px-2 py-1 text-right"
-											value={item.amount}
-											readOnly
-										/>
-									</td>
-								</tr>
-							))}
-						</tbody>
-					</table>
-					<button
-						onClick={addNewItem}
-						className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-					>
-						Add Item
-					</button>
-				</div>
-
-				{/* Totals Section */}
-				<div className="flex justify-end">
-					<div className="w-64">
-						<div className="flex justify-between py-2">
-							<span className="font-medium">Subtotal:</span>
-							<input
-								type="number"
-								className="border rounded px-2 py-1 w-32 text-right"
-								value={invoiceData.subtotal}
-								readOnly
-							/>
-						</div>
-						<div className="flex justify-between py-2">
-							<span className="font-medium">Shipping:</span>
-							<input
-								type="number"
-								className="border rounded px-2 py-1 w-32 text-right"
-								value={invoiceData.shipping}
-								onChange={(e) => setInvoiceData(prev => ({
-									...prev,
-									shipping: Number(e.target.value),
-									total: prev.subtotal + Number(e.target.value)
-								}))}
-							/>
-						</div>
-						<div className="flex justify-between py-2 border-t border-gray-200">
-							<span className="font-bold">Total:</span>
-							<input
-								type="number"
-								className="border rounded px-2 py-1 w-32 text-right font-bold"
-								value={invoiceData.total}
-								readOnly
-							/>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-);
-
-export default Invoice;
+import {
+	Body,
+	Container,
+	Column,
+	Head,
+	Heading,
+	Hr,
+	Html,
+	Preview,
+	Row,
+	Section,
+	Text,
+	Font,
+  } from "@react-email/components";
+  import { Tailwind } from "@react-email/tailwind";
+  
+  interface InvoiceItem {
+	name: string;
+	description: string;
+	quantity: string;
+	rate: string;
+	amount: number;
+  }
+  
+  interface InvoiceEmailProps {
+	invoiceNo: string;
+	dueDate: string;
+	amountDue: number;
+	billTo: string;
+	shipTo: string;
+	shipDate: string;
+	shipVia: string;
+	terms: string;
+	items: InvoiceItem[];
+	subtotal: number;
+	shipping: number;
+	total: number;
+	message?: string;
+  }
+  
+  export const InvoiceEmail = ({
+	invoiceNo,
+	dueDate,
+	amountDue,
+	billTo,
+	shipTo,
+	shipDate,
+	shipVia,
+	terms,
+	items,
+	subtotal,
+	shipping,
+	total,
+	message,
+  }: InvoiceEmailProps) => {
+	const formatDate = (date: string) => {
+	  return new Date(date).toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric'
+	  });
+	};
+  
+	const formatCurrency = (amount: number) => {
+	  return new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: 'USD'
+	  }).format(amount);
+	};
+  
+	return (
+	  <Html>
+		<Head>
+		  <Font
+			fontFamily="Inter"
+			fallbackFontFamily="Arial"
+			webFont={{
+			  url: "https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap",
+			  format: "woff2",
+			}}
+		  />
+		</Head>
+		<Preview>Invoice {invoiceNo} - Due {formatDate(dueDate)}</Preview>
+		<Tailwind>
+		  <Body className="bg-white font-sans">
+			<Container className="mx-auto py-8 px-4">
+			  {/* Header */}
+			  <Section className="mb-8">
+				<Row>
+				  <Column>
+					<Heading className="text-2xl font-bold text-gray-800 mb-0">
+					  INVOICE
+					</Heading>
+					<Text className="text-gray-500 mt-1 mb-0">
+					  #{invoiceNo}
+					</Text>
+				  </Column>
+				  <Column align="right">
+					<Text className="font-bold text-gray-800 mb-0">
+					  Amount Due: {formatCurrency(amountDue)}
+					</Text>
+					<Text className="text-gray-500 mt-1 mb-0">
+					  Due Date: {formatDate(dueDate)}
+					</Text>
+				  </Column>
+				</Row>
+			  </Section>
+  
+			  <Hr className="border-gray-200 my-6" />
+  
+			  {/* Billing and Shipping Info */}
+			  <Section>
+				<Row>
+				  <Column>
+					<Text className="font-bold mb-2">Bill To:</Text>
+					<Text className="text-gray-600 whitespace-pre-line">
+					  {billTo}
+					</Text>
+				  </Column>
+				  <Column>
+					<Text className="font-bold mb-2">Ship To:</Text>
+					<Text className="text-gray-600 whitespace-pre-line">
+					  {shipTo}
+					</Text>
+				  </Column>
+				</Row>
+			  </Section>
+  
+			  {/* Shipping Details */}
+			  <Section className="mt-6">
+				<Row>
+				  <Column>
+					<Text className="text-sm text-gray-500">
+					  <span className="font-bold">Ship Date:</span> {formatDate(shipDate)}
+					</Text>
+				  </Column>
+				  <Column>
+					<Text className="text-sm text-gray-500">
+					  <span className="font-bold">Ship Via:</span> {shipVia}
+					</Text>
+				  </Column>
+				  <Column>
+					<Text className="text-sm text-gray-500">
+					  <span className="font-bold">Terms:</span> {terms}
+					</Text>
+				  </Column>
+				</Row>
+			  </Section>
+  
+			  <Hr className="border-gray-200 my-6" />
+  
+			  {/* Items Table */}
+			  <Section className="mt-6">
+				<Row className="bg-gray-100 text-sm">
+				  <Column className="py-2 px-4 font-bold">Item</Column>
+				  <Column className="py-2 px-4 font-bold">Description</Column>
+				  <Column className="py-2 px-4 font-bold text-right">Quantity</Column>
+				  <Column className="py-2 px-4 font-bold text-right">Rate</Column>
+				  <Column className="py-2 px-4 font-bold text-right">Amount</Column>
+				</Row>
+				{items.map((item, index) => (
+				  <Row key={index} className="border-b border-gray-200">
+					<Column className="py-2 px-4">{item.name}</Column>
+					<Column className="py-2 px-4">{item.description}</Column>
+					<Column className="py-2 px-4 text-right">{item.quantity}</Column>
+					<Column className="py-2 px-4 text-right">
+					  {formatCurrency(Number(item.rate))}
+					</Column>
+					<Column className="py-2 px-4 text-right">
+					  {formatCurrency(item.amount)}
+					</Column>
+				  </Row>
+				))}
+			  </Section>
+  
+			  {/* Totals */}
+			  <Section className="mt-6">
+				<Row>
+				  <Column className="w-2/3" />
+				  <Column className="w-1/3">
+					<Row>
+					  <Column>
+						<Text className="text-gray-600">Subtotal:</Text>
+					  </Column>
+					  <Column align="right">
+						<Text className="font-bold">{formatCurrency(subtotal)}</Text>
+					  </Column>
+					</Row>
+					<Row>
+					  <Column>
+						<Text className="text-gray-600">Shipping:</Text>
+					  </Column>
+					  <Column align="right">
+						<Text className="font-bold">{formatCurrency(shipping)}</Text>
+					  </Column>
+					</Row>
+					<Hr className="border-gray-200 my-2" />
+					<Row>
+					  <Column>
+						<Text className="font-bold">Total:</Text>
+					  </Column>
+					  <Column align="right">
+						<Text className="font-bold">{formatCurrency(total)}</Text>
+					  </Column>
+					</Row>
+				  </Column>
+				</Row>
+			  </Section>
+  
+			  {/* Message */}
+			  {message && (
+				<Section className="mt-8">
+				  <Text className="text-gray-600 whitespace-pre-line">
+					{message}
+				  </Text>
+				</Section>
+			  )}
+  
+			  {/* Footer */}
+			  <Section className="mt-8">
+				<Text className="text-sm text-gray-500 text-center">
+				  Thank you for your business!
+				</Text>
+			  </Section>
+			</Container>
+		  </Body>
+		</Tailwind>
+	  </Html>
+	);
+  };
+  
+  export default InvoiceEmail;
