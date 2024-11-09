@@ -99,7 +99,7 @@ const InvoicePage: React.FC = () => {
 	};
 
 	return (
-		<form action="/api/send">
+		<form action="/api/send" method='POST'>
 			<div className="bg-gray-100 min-h-screen p-6">
 				<div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
 					{/* Header Section */}
@@ -302,11 +302,13 @@ const InvoicePage: React.FC = () => {
 							</div>
 						</div>
 					</div>
+					
 				</div>
+				
 			</div>
-			<button className='p-4' type="submit">
-				Add this invoice
-			</button>
+			<button className='p-4 border rounded-2xl font-bold' type="submit">
+					Add this invoice
+				</button>
 		</form>
 
 	);

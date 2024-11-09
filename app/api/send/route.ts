@@ -33,71 +33,33 @@ interface FormData {
 	total: number;
 	message?: string;
 }
-// export async function POST(req: Request) {
-//   try {
-//     const secret = 're_X4xZCs2q_LE8RUh4aMc8uNqz2vySs3RgE'
-//     const { name, email, message }: FormData = await req.json();
-//     const recipientEmail = 'rikkislayr@gmail.com'
-
-//     const emailPromises = () =>
-//       axios.post(
-//         'https://api.brevo.com/v3/smtp/email',
-//         {
-//           to: [{ email: recipientEmail }],
-//           sender: { email: 'main@patrickaigbogun.me', name: 'Patrick' },
-//           subject: `New message from ${name}`,
-//           htmlContent: `<p><strong>From:</strong> ${name} (${email})</p><p><strong>Message:</strong> ${message}</p>`,
-//         },
-//         {
-//           headers: {
-//             'Content-Type': 'application/json',
-//             'api-key': secret,
-//           },
-//         }
-//       )
-
-
-//     await Promise.all(recipientEmail);
-//     return NextResponse.json({ message: 'Emails sent successfully' }, { status: 200 });
-//   } catch (error) {
-//     console.error('Brevo error:', error);
-//     return NextResponse.json({ message: 'Email sending failed' }, { status: 500 });
-//   }
-// }
 
 
 export async function POST(req: Request) {
 	try {
 		const formData: FormData = await req.json()
+		console.log(formData)
 
 
 		const { data, error } = await resend.emails.send({
 			from: 'main@patrickaigbogun.me',
-			to: ['bigtechdomain@gmail.com'],
+			to: ['rikkislayr@gmail.com'],
 			subject: `Invoice #${formData.invoiceNo}`,
-			react: InvoiceEmail({
-				invoiceNo: formData.invoiceNo,
-				dueDate: formData.dueDate,
-				amountDue: formData.amountDue,
-				billTo: formData.billTo,
-				shipTo: formData.shipTo,
-				shipDate: formData.shipDate,
-				shipVia: formData.shipVia,
-				terms: formData.terms,
-				items: formData.items,
-				subtotal: formData.subtotal,
-				shipping: formData.shipping,
-				total: formData.total,
-				message: formData.message
-			}) as React.ReactElement,
+			react: InvoiceEmail(formData),
 		});
 
 		if (error) {
-			return Response.json({ error }, { status: 500 });
+			return Response.json({ error });
 		}
 
-		return Response.json({ data });
+		return (
+			console.error,
+			Response.json({ data })
+		);
 	} catch (error) {
-		return Response.json({ error }, { status: 500 });
+		return (
+			console.error,
+			Response.json({ error })
+		)
 	}
 }
