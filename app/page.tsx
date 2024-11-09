@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 interface InvoiceItem {
 	id: number;
@@ -28,6 +28,7 @@ interface InvoiceData {
 }
 
 const InvoicePage: React.FC = () => {
+	const [status, setStatus] = useState<string | null>(null);
 	const [invoiceData, setInvoiceData] = useState<InvoiceData>({
 		invoiceNo: '',
 		dueDate: '',
@@ -98,13 +99,33 @@ const InvoicePage: React.FC = () => {
 		}));
 	};
 
+	const handleSubmit = async (e: FormEvent) => {
+		e.preventDefault();
+		try {
+			const response = await fetch('/api/send', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(invoiceData)
+			});
+			if (response.ok) {
+				setStatus('Email sent successfully!');
+			} else {
+				setStatus('Failed to send email.');
+			}
+		} catch (error) {
+			console.error('Submit error:', error);
+			setStatus('An error occurred.');
+		}
+	};
+
 	return (
-		<form action="/api/send" method='POST'>
+		<form onSubmit={handleSubmit}>
 			<div className="bg-gray-100 min-h-screen p-6">
 				<div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
 					{/* Header Section */}
 					<div className="flex justify-between items-start mb-8">
 						<div>
+							{status && <p>{status}</p>}
 							<div className="w-40 h-16 bg-gray-200 flex items-center justify-center mb-4">
 								<span className="text-gray-500">Your Logo</span>
 							</div>
@@ -302,13 +323,13 @@ const InvoicePage: React.FC = () => {
 							</div>
 						</div>
 					</div>
-					
+					<button className='p-4 border rounded-2xl font-bold' type="submit">
+						Add this invoice
+					</button>
 				</div>
-				
+
 			</div>
-			<button className='p-4 border rounded-2xl font-bold' type="submit">
-					Add this invoice
-				</button>
+
 		</form>
 
 	);
