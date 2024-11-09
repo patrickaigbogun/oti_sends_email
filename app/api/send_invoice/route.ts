@@ -1,11 +1,9 @@
-// app/api/sendEmail/route.ts
-// import axios from 'axios';
-// import { NextResponse } from 'next/server';
+
 import InvoiceEmail from '@/app/components/invoice_template';
-import { config } from '@/config';
+import { ResendConfig } from '@/utils/resend_config';
 import { Resend } from 'resend';
 
-const apiKey = config.apiKey
+const apiKey = ResendConfig.apiKey
 const resend = new Resend(apiKey);
 
 

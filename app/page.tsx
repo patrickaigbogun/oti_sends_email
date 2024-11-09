@@ -102,7 +102,7 @@ const InvoicePage: React.FC = () => {
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
 		try {
-			const response = await fetch('/api/send', {
+			const response = await fetch('/api/send_invoice', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(invoiceData)
