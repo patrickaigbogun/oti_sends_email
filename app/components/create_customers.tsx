@@ -47,7 +47,7 @@ export default function CreateCustomers() {
 				<section className="flex flex-col space-y-2" >
 					<label htmlFor="email">Customers Email</label>
 					<input
-						className="text-black"
+						className="p-2 rounded-xl outline outline-gray-500 hover:outline-gray-300 focus:outline-gray-300 focus:outline"
 						name="email"
 						type="email"
 						value={customerData.email}
@@ -59,7 +59,7 @@ export default function CreateCustomers() {
 				<section className="flex flex-col space-y-2" >
 					<label htmlFor="name" >Customers name</label>
 					<input
-						className="text-black"
+						className="p-2 rounded-xl outline outline-gray-500 hover:outline-gray-300 focus:outline-gray-300 focus:outline"
 						name="name"
 						type="text"
 						value={customerData.name}
@@ -71,7 +71,7 @@ export default function CreateCustomers() {
 				<section className="flex flex-col space-y-2" >
 					<label htmlFor="tel" >Customers phone</label>
 					<input
-						className="text-black"
+						className="p-2 rounded-xl outline outline-gray-500 hover:outline-gray-300 focus:outline-gray-300 focus:outline"
 						name="tel"
 						type="tel"
 						value={customerData.phoneNo}
