@@ -39,9 +39,9 @@ export default function CreateCustomers() {
 		}
 	};
 	return (
-		<div className="mx-auto w-[90%] sm:w-[70%] my-10 text-white font-bold justify-center flex flex-col p-5 border border-gray-500 rounded-xl">
+		<div className="mx-auto w-[90%] sm:w-[70%] my-10 text-white font-bold justify-center flex flex-col p-5 border border-gray-500 rounded-xl bg-white/5">
 			<form onSubmit={handleSubmit} 
-			className="space-y-6"
+			className="space-y-6 "
 			>
 				{status && <p>{status}</p>}
 				<section className="flex flex-col space-y-2" >
