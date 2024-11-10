@@ -1,13 +1,15 @@
 'use client';
 
-import { InvoiceData, InvoiceItem } from '@/types/objects';
-import { FormEvent, useState } from 'react';
+import { CustomerData, InvoiceData, InvoiceItem } from '@/types/objects';
+import { FormEvent, useEffect, useState } from 'react';
+import { fetchCustomers } from './lib/getCustomer';
 
 
 
 
 
 const InvoicePage: React.FC = () => {
+	const [customerEmails, setCustomerEmails] = useState<string[]>([]);
 	const [status, setStatus] = useState<string | null>(null);
 	const [invoiceData, setInvoiceData] = useState<InvoiceData>({
 		invoiceNo: '',
@@ -98,6 +100,20 @@ const InvoicePage: React.FC = () => {
 		}
 	};
 
+	// Fetch customer emails on component mount
+	async function customerOption() {
+		try {
+		  const customers: CustomerData[] = await fetchCustomers();
+		  const emails = customers.map(customer => customer.email);
+		  setCustomerEmails(emails);
+		} catch (error) {
+		  console.error("Error fetching customer emails:", error);
+		}
+	  }
+	useEffect(() => {
+	  customerOption();
+	}, []);
+
 	return (
 		<div className=" min-h-screen py-10 w-[90%] sm:w-[70%] mx-auto">
 			<form className='text-black' onSubmit={handleSubmit}>
@@ -111,6 +127,15 @@ const InvoicePage: React.FC = () => {
 								<span className="text-gray-500">Your Logo</span>
 							</div>
 							<h1 className="text-2xl font-bold text-gray-800">INVOICE</h1>
+						</div>
+						<div>
+							<select className=' bg-gray-300 rounded-lg ' >
+								{customerEmails.map((email, index) => (
+									<option key={index} value={email}>
+										{email}
+									</option>
+								))}
+							</select>
 						</div>
 						<div className="text-right">
 							<p>Invoice No:
