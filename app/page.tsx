@@ -9,10 +9,11 @@ import { fetchCustomers } from './lib/getCustomer';
 
 
 const InvoicePage: React.FC = () => {
-	const [customerEmails, setCustomerEmails] = useState<string[]>([]);
 	const [status, setStatus] = useState<string | null>(null);
+	const [customerEmails, setCustomerEmails] = useState<string[]>([]);
 	const [invoiceData, setInvoiceData] = useState<InvoiceData>({
 		invoiceNo: '',
+		email: '',
 		dueDate: '',
 		amountDue: 0,
 		message: '',
@@ -100,18 +101,18 @@ const InvoicePage: React.FC = () => {
 		}
 	};
 
-	// Fetch customer emails on component mount
-	async function customerOption() {
+	const fetchCustomerEmails = async () => {
 		try {
-		  const customers: CustomerData[] = await fetchCustomers();
-		  const emails = customers.map(customer => customer.email);
-		  setCustomerEmails(emails);
+			const customers: CustomerData[] = await fetchCustomers();
+			const emails = customers.map(customer => customer.email);
+			setCustomerEmails(emails);
 		} catch (error) {
-		  console.error("Error fetching customer emails:", error);
+			console.error("Error fetching customer emails:", error);
 		}
-	  }
+	};
+
 	useEffect(() => {
-	  customerOption();
+		fetchCustomerEmails();
 	}, []);
 
 	return (
@@ -129,7 +130,13 @@ const InvoicePage: React.FC = () => {
 							<h1 className="text-2xl font-bold text-gray-800">INVOICE</h1>
 						</div>
 						<div>
-							<select className=' bg-gray-300 rounded-lg ' >
+							{/* Email Select Dropdown */}
+							<select
+								value={invoiceData.email}
+								onChange={(e) => handleInputChange('email', e.target.value)}
+								className="bg-gray-300 rounded-lg"
+							>
+								<option value="" disabled>Select Customer Email</option>
 								{customerEmails.map((email, index) => (
 									<option key={index} value={email}>
 										{email}

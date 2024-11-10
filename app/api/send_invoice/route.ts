@@ -16,7 +16,7 @@ export async function POST(req: Request) {
 
 		const { data, error } = await resend.emails.send({
 			from: 'main@patrickaigbogun.me',
-			to: ['rikkislayr@gmail.com'],
+			to: [formData.email],
 			subject: `Invoice #${formData.invoiceNo}`,
 			react: InvoiceEmail(formData),
 		});

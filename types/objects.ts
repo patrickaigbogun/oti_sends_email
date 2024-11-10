@@ -7,6 +7,7 @@ export interface CustomerData {
 
 export interface InvoiceData {
 	invoiceNo: string;
+	email:CustomerData['email'];
 	dueDate: string;
 	amountDue: number;
 	message: string;
