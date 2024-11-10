@@ -4,7 +4,7 @@ import { CustomerData } from "@/types/objects";
 import { FormEvent, useState } from "react";
 
 
-export default function CreateCustomerPage() {
+export default function CreateCustomers() {
 
 	const [status, setStatus] = useState<string | null>(null);
 	const [customerData, setcustomerData] = useState<CustomerData>({
