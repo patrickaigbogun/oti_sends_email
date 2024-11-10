@@ -1,17 +1,16 @@
 import { CustomerData } from "@/types/objects";
-import { Config } from "@/utils/config";
+// import { Config } from "@/utils/config";
 
   
   // lib/getCustomer.ts
   export async function fetchCustomers(): Promise<CustomerData[]> {
     // Use absolute URL path starting with http:// or https://
     // Or use relative URL with proper base path
-    const baseUrl = Config.apiKey;
+    const baseUrl = 'http://localhost:3000';
     const apiUrl = `${baseUrl}/api/get_customer`;
   
     try {
       const response = await fetch(apiUrl, { 
-        cache: 'no-store',
         headers: {
           'Content-Type': 'application/json',
         }
