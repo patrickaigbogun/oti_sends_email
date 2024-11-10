@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
 import sql from "@/utils/neon_db_conn";
-import { headers } from 'next/headers';
+// import { headers } from 'next/headers';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export async function GET() {
-    const headersList = headers();
+    // const headersList = headers();
     
     try {
         const customers = await sql`
