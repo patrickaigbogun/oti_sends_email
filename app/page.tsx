@@ -1,38 +1,18 @@
 'use client';
 
+import { InvoiceData, InvoiceItem } from '@/types/objects';
 import { FormEvent, useState } from 'react';
 
-interface InvoiceItem {
-	id: number;
-	name: string;
-	description: string;
-	quantity: string;
-	rate: string;
-	amount: number;
-}
 
-interface InvoiceData {
-	invoiceNo: string;
-	dueDate: string;
-	amountDue: string;
-	message: string;
-	billTo: string;
-	shipTo: string;
-	shipDate: string;
-	shipVia: string;
-	terms: string;
-	items: InvoiceItem[];
-	subtotal: number;
-	shipping: number;
-	total: number;
-}
+
+
 
 const InvoicePage: React.FC = () => {
 	const [status, setStatus] = useState<string | null>(null);
 	const [invoiceData, setInvoiceData] = useState<InvoiceData>({
 		invoiceNo: '',
 		dueDate: '',
-		amountDue: '',
+		amountDue: 0,
 		message: '',
 		billTo: '',
 		shipTo: '',
@@ -119,8 +99,9 @@ const InvoicePage: React.FC = () => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<div className="bg-gray-100 min-h-screen p-6">
+		<div className=" min-h-screen py-10 w-[90%] sm:w-[70%] mx-auto">
+			<form className='text-black' onSubmit={handleSubmit}>
+
 				<div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
 					{/* Header Section */}
 					<div className="flex justify-between items-start mb-8">
@@ -132,9 +113,9 @@ const InvoicePage: React.FC = () => {
 							<h1 className="text-2xl font-bold text-gray-800">INVOICE</h1>
 						</div>
 						<div className="text-right">
-							<p className="text-gray-600">Invoice No:
+							<p>Invoice No:
 								<input
-									className="border rounded px-2 py-1"
+									className="border rounded px-2 py-1 bg-gray-300"
 									value={invoiceData.invoiceNo}
 									onChange={(e) => handleInputChange('invoiceNo', e.target.value)}
 								/>
@@ -142,7 +123,7 @@ const InvoicePage: React.FC = () => {
 							<div className="mt-2">
 								<input
 									type="date"
-									className="border rounded px-2 py-1"
+									className="border rounded px-2 py-1 bg-gray-300"
 									value={invoiceData.dueDate}
 									onChange={(e) => handleInputChange('dueDate', e.target.value)}
 								/>
@@ -150,7 +131,7 @@ const InvoicePage: React.FC = () => {
 							<div className="mt-2">
 								<input
 									type="number"
-									className="border rounded px-2 py-1"
+									className="border rounded px-2 py-1 bg-gray-300"
 									placeholder="Amount Due"
 									value={invoiceData.amountDue}
 									onChange={(e) => handleInputChange('amountDue', e.target.value)}
@@ -162,7 +143,7 @@ const InvoicePage: React.FC = () => {
 					{/* Message Section */}
 					<div className="mb-8">
 						<textarea
-							className="w-full border rounded-lg p-4 h-24"
+							className="w-full border rounded-lg p-4 h-24 bg-gray-300"
 							placeholder="Enter your message here..."
 							value={invoiceData.message}
 							onChange={(e) => handleInputChange('message', e.target.value)}
@@ -174,7 +155,7 @@ const InvoicePage: React.FC = () => {
 						<div>
 							<h3 className="font-bold mb-2">Bill To:</h3>
 							<textarea
-								className="w-full border rounded p-2 h-24"
+								className="w-full border rounded p-2 h-24 bg-gray-300"
 								value={invoiceData.billTo}
 								onChange={(e) => handleInputChange('billTo', e.target.value)}
 							/>
@@ -182,7 +163,7 @@ const InvoicePage: React.FC = () => {
 						<div>
 							<h3 className="font-bold mb-2">Ship To:</h3>
 							<textarea
-								className="w-full border rounded p-2 h-24"
+								className="w-full border rounded p-2 h-24 bg-gray-300"
 								value={invoiceData.shipTo}
 								onChange={(e) => handleInputChange('shipTo', e.target.value)}
 							/>
@@ -195,7 +176,7 @@ const InvoicePage: React.FC = () => {
 							<label className="block text-sm font-medium text-gray-600">Ship Date</label>
 							<input
 								type="date"
-								className="w-full border rounded px-2 py-1 mt-1"
+								className="w-full border rounded px-2 py-1 mt-1 bg-gray-300"
 								value={invoiceData.shipDate}
 								onChange={(e) => handleInputChange('shipDate', e.target.value)}
 							/>
@@ -204,7 +185,7 @@ const InvoicePage: React.FC = () => {
 							<label className="block text-sm font-medium text-gray-600">Ship Via</label>
 							<input
 								type="text"
-								className="w-full border rounded px-2 py-1 mt-1"
+								className="w-full border rounded px-2 py-1 mt-1 bg-gray-300"
 								value={invoiceData.shipVia}
 								onChange={(e) => handleInputChange('shipVia', e.target.value)}
 							/>
@@ -213,7 +194,7 @@ const InvoicePage: React.FC = () => {
 							<label className="block text-sm font-medium text-gray-600">Terms</label>
 							<input
 								type="text"
-								className="w-full border rounded px-2 py-1 mt-1"
+								className="w-full border rounded px-2 py-1 mt-1 bg-gray-300"
 								value={invoiceData.terms}
 								onChange={(e) => handleInputChange('terms', e.target.value)}
 							/>
@@ -238,7 +219,7 @@ const InvoicePage: React.FC = () => {
 										<td className="px-4 py-2">
 											<input
 												type="text"
-												className="w-full border rounded px-2 py-1"
+												className="w-full border rounded px-2 py-1 bg-gray-300"
 												value={item.name}
 												onChange={(e) => handleItemChange(index, 'name', e.target.value)}
 											/>
@@ -246,7 +227,7 @@ const InvoicePage: React.FC = () => {
 										<td className="px-4 py-2">
 											<input
 												type="text"
-												className="w-full border rounded px-2 py-1"
+												className="w-full border rounded px-2 py-1 bg-gray-300"
 												value={item.description}
 												onChange={(e) => handleItemChange(index, 'description', e.target.value)}
 											/>
@@ -254,7 +235,7 @@ const InvoicePage: React.FC = () => {
 										<td className="px-4 py-2">
 											<input
 												type="number"
-												className="w-full border rounded px-2 py-1 text-right"
+												className="w-full border rounded px-2 py-1 text-right bg-gray-300"
 												value={item.quantity}
 												onChange={(e) => handleItemChange(index, 'quantity', e.target.value)}
 											/>
@@ -262,7 +243,7 @@ const InvoicePage: React.FC = () => {
 										<td className="px-4 py-2">
 											<input
 												type="number"
-												className="w-full border rounded px-2 py-1 text-right"
+												className="w-full border rounded px-2 py-1 text-right bg-gray-300"
 												value={item.rate}
 												onChange={(e) => handleItemChange(index, 'rate', e.target.value)}
 											/>
@@ -270,7 +251,7 @@ const InvoicePage: React.FC = () => {
 										<td className="px-4 py-2">
 											<input
 												type="number"
-												className="w-full border rounded px-2 py-1 text-right"
+												className="w-full border rounded px-2 py-1 text-right bg-gray-300"
 												value={item.amount}
 												readOnly
 											/>
@@ -294,7 +275,7 @@ const InvoicePage: React.FC = () => {
 								<span className="font-medium">Subtotal:</span>
 								<input
 									type="number"
-									className="border rounded px-2 py-1 w-32 text-right"
+									className="border rounded px-2 py-1 w-32 text-right bg-gray-300"
 									value={invoiceData.subtotal}
 									readOnly
 								/>
@@ -303,7 +284,7 @@ const InvoicePage: React.FC = () => {
 								<span className="font-medium">Shipping:</span>
 								<input
 									type="number"
-									className="border rounded px-2 py-1 w-32 text-right"
+									className="border rounded px-2 py-1 w-32 text-right bg-gray-300"
 									value={invoiceData.shipping}
 									onChange={(e) => setInvoiceData(prev => ({
 										...prev,
@@ -316,7 +297,7 @@ const InvoicePage: React.FC = () => {
 								<span className="font-bold">Total:</span>
 								<input
 									type="number"
-									className="border rounded px-2 py-1 w-32 text-right font-bold"
+									className="border rounded px-2 py-1 w-32 text-right font-bold bg-gray-300"
 									value={invoiceData.total}
 									readOnly
 								/>
@@ -324,13 +305,13 @@ const InvoicePage: React.FC = () => {
 						</div>
 					</div>
 					<button className='p-4 border rounded-2xl font-bold' type="submit">
-						Add this invoice
+						Send this invoice
 					</button>
 				</div>
+			</form>
 
-			</div>
+		</div>
 
-		</form>
 
 	);
 };

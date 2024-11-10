@@ -1,3 +1,4 @@
+import { InvoiceEmailProps } from "@/types/objects";
 import {
 	Body,
 	Container,
@@ -14,29 +15,8 @@ import {
   } from "@react-email/components";
   import { Tailwind } from "@react-email/tailwind";
   
-  interface InvoiceItem {
-	name: string;
-	description: string;
-	quantity: string;
-	rate: string;
-	amount: number;
-  }
   
-  interface InvoiceEmailProps {
-	invoiceNo: string;
-	dueDate: string;
-	amountDue: number;
-	billTo: string;
-	shipTo: string;
-	shipDate: string;
-	shipVia: string;
-	terms: string;
-	items: InvoiceItem[];
-	subtotal: number;
-	shipping: number;
-	total: number;
-	message?: string;
-  }
+
   
   export const InvoiceEmail = ({
 	invoiceNo,

@@ -4,9 +4,6 @@ import sql from "@/utils/neon_db_conn";
 
 
 
-
-
-
 export async function POST(req: Request) {
 	try {
 		const customerData: CustomerData = await req.json()

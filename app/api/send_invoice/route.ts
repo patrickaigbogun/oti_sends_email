@@ -1,5 +1,6 @@
 
 import InvoiceEmail from '@/app/components/invoice_template';
+import { InvoiceData } from '@/types/objects';
 import { ResendConfig } from '@/utils/resend_config';
 import { Resend } from 'resend';
 
@@ -7,35 +8,9 @@ const apiKey = ResendConfig.apiKey
 const resend = new Resend(apiKey);
 
 
-
-interface InvoiceItem {
-	name: string;
-	description: string;
-	quantity: string;
-	rate: string;
-	amount: number;
-}
-
-interface FormData {
-	invoiceNo: string;
-	dueDate: string;
-	amountDue: number;
-	billTo: string;
-	shipTo: string;
-	shipDate: string;
-	shipVia: string;
-	terms: string;
-	items: InvoiceItem[];
-	subtotal: number;
-	shipping: number;
-	total: number;
-	message?: string;
-}
-
-
 export async function POST(req: Request) {
 	try {
-		const formData: FormData = await req.json()
+		const formData: InvoiceData = await req.json()
 		console.log(formData)
 
 
