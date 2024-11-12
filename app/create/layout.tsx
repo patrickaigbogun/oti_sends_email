@@ -6,6 +6,7 @@ import localFont from "next/font/local";
 import "../globals.css";
 import CreateSegmentControl from "../components/create_segmented_control";
 import Drawer from "../components/drawer";
+import CreateLayoutHeader from "../components/create_layout_header";
 
 const geistSans = localFont({
 	src: "../fonts/GeistVF.woff",
@@ -30,11 +31,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<section>
-			<Drawer />
+			<CreateLayoutHeader/>
+			{/* <Drawer /> */}
 			<section
 				className={`${geistSans.variable} ${geistMono.variable} antialiased text-white mx-auto w-[95%] sm:w-[75%] `}
 			>
-				<CreateSegmentControl />
+				{/* <CreateSegmentControl /> */}
 				{children}
 			</section>
 
