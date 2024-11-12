@@ -1,9 +1,9 @@
 import dynamic from "next/dynamic"
-import CreateCustomers from "../components/create_customers"
+import CreateCustomers from "../../components/create_customers"
 // import CreateCustomerPage from "./create/page"
 // import ListCustomerPage from "./list/page"
 
-const ListCustomers = dynamic(() => import('../components/list_customers'), { ssr: false })
+const ListCustomers = dynamic(() => import('../../components/list_customers'), { ssr: false })
 
 export default function CustomerPage() {
 

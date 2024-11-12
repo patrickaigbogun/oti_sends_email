@@ -2,7 +2,7 @@
 
 import { CustomerData, InvoiceData, InvoiceItem } from '@/types/objects';
 import { FormEvent, useEffect, useState } from 'react';
-import { fetchCustomers } from './lib/getCustomer';
+import { fetchCustomers } from '@/app/lib/getCustomer';
 
 
 
