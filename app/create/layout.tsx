@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import CreateSegmentControl from "../components/create_segmented_control";
 
 
 
@@ -15,7 +16,8 @@ export default function CreateLayout({
 }>){
 <html>
     <body>
-        children
+        <CreateSegmentControl />
+        {children}
     </body>
 </html>
 
