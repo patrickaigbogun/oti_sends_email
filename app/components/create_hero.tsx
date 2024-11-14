@@ -6,7 +6,7 @@ import { Heading } from "@radix-ui/themes";
 import Link from "next/link";
 
 
-export default function HeroCreatePage() {
+export default function CreateHero() {
     return (
         <section className="space-y-8" >
             <Heading>Here you can choose to create your customers, invoices, reciepts, etc</Heading>
