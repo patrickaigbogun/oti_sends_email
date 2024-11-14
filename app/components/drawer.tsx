@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { DotsThreeCircle } from "@phosphor-icons/react/dist/ssr";
 
 export default function Drawer() {
@@ -14,14 +14,10 @@ export default function Drawer() {
 		<div className="relative z-10">
 			<button
 				className={` transition-all ${isOpen ? 'invisible' : 'visible'}`}
-				onClick={toggleDrawer}
-			>
+				onClick={toggleDrawer}>
 				<DotsThreeCircle size={32} />
 			</button>
-			<div
-				className={`fixed top-0 bg-black bg-opacity-40 backdrop-blur-lg shadow-lg left-0 h-full w-64 p-4 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'
-					}`}
-			>
+			<div className={`fixed top-0 bg-black bg-opacity-40 backdrop-blur-lg shadow-lg left-0 h-full w-64 p-4 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
 				<span className='flex flex-row justify-between' >
 					<h3 className="text-lg font-medium mb-2">Drawer Content</h3>
 					<button

@@ -8,7 +8,7 @@ const ListCustomers = dynamic(() => import('../../components/list_customers'), {
 export default function CustomerPage() {
 
 	return (
-		<div className="font-bold w-[90%] sm:w-[70%] mx-auto py-10" >
+		<section >
 			<h1 className="text-2xl" >Add your customers here to see them on the list below</h1>
 			<CreateCustomers />
 			<span>
@@ -16,6 +16,6 @@ export default function CustomerPage() {
 			<p className="font-light" ><i>Saved customers can be set as recipients of invoices, reciepts, notice, etc</i></p>
 			</span>
 			<ListCustomers />
-		</div>
+		</section>
 	)
 }

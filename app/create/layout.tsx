@@ -30,12 +30,9 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<section>
-			<CreateLayoutHeader/>
-			{/* <Drawer /> */}
-			<section
-				className={`${geistSans.variable} ${geistMono.variable} antialiased text-white mx-auto w-[95%] sm:w-[75%] `}
-			>
+		<section className='w-full'>
+			<CreateLayoutHeader />
+			<section>
 				{/* <CreateSegmentControl /> */}
 				{children}
 			</section>
