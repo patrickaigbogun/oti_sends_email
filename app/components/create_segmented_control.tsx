@@ -2,36 +2,50 @@
 
 import { ClockCounterClockwise, House } from "@phosphor-icons/react/dist/ssr";
 import { Flex, SegmentedControl } from "@radix-ui/themes";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function CreateSegmentControl() {
+	const router = useRouter()
+	const [value, setValue] = useState('Home');
+
+	const handleClick = (selectedValue: string) => {
+		setValue(selectedValue);
+		switch (selectedValue) {
+			case 'Home':
+				router.push('/create');
+				break
+			case 'Invoice':
+				router.push('/create/invoice');
+				break
+			case 'Customers':
+				router.push('/create/customers');
+				break
+			case 'Reciepts':
+				router.push('/create/reciepts');
+				break
+			case 'Recents':
+				router.push('/create/recents');
+				break
+		}
+	}
 	return (
 		<Flex align="center" direction="row" gap="4" justify='center' >
-			<SegmentedControl.Root radius="full">
-				<SegmentedControl.Item value="Home">
-					<Link href={'/create'} >
-						<House size={32} />
-					</Link>
+			<SegmentedControl.Root radius="full" value={value} onValueChange={handleClick}>
+				<SegmentedControl.Item value="Home" >
+					<House size={24} />
 				</SegmentedControl.Item>
-				<SegmentedControl.Item value="Invoice">
-					<Link href={"/create/invoice"}>
-						Invoice
-					</Link>
+				<SegmentedControl.Item value="Invoice" >
+					Invoice
 				</SegmentedControl.Item>
-				<SegmentedControl.Item value="Customers">
-					<Link href={"/create/customers"}>
-						Customers
-					</Link>
+				<SegmentedControl.Item value="Customers" >
+					Customers
 				</SegmentedControl.Item>
-				<SegmentedControl.Item value="Reciepts">
-					<Link href={"/create/reciepts"}>
-						Reciepts
-					</Link>
+				<SegmentedControl.Item value="Reciepts" >
+					Reciepts
 				</SegmentedControl.Item>
-				<SegmentedControl.Item value="Recents">
-					<Link href={'/create/recents'} >
-						<ClockCounterClockwise size={32} />
-					</Link>
+				<SegmentedControl.Item value="Recents" >
+					<ClockCounterClockwise size={24} />
 				</SegmentedControl.Item>
 			</SegmentedControl.Root>
 		</Flex>
