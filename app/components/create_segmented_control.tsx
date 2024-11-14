@@ -30,7 +30,7 @@ export default function CreateSegmentControl() {
 		}
 	}
 	return (
-		<Flex align="center" direction="row" gap="4" justify='center' >
+		<div>
 			<SegmentedControl.Root radius="full" value={value} onValueChange={handleClick}>
 				<SegmentedControl.Item value="Home" >
 					<House size={24} />
@@ -48,6 +48,6 @@ export default function CreateSegmentControl() {
 					<ClockCounterClockwise size={24} />
 				</SegmentedControl.Item>
 			</SegmentedControl.Root>
-		</Flex>
+		</div>
 	);
 }
