@@ -142,7 +142,7 @@ export default function ListCustomers() {
 					)}
 
 					<div className="flex justify-center w-full">
-						<Table.Root className="border rounded-xl p-2 table-auto max-w-full bg-white/5" >
+						<Table.Root className="max-w-full"  variant="surface" layout={'auto'} size={'3'}>
 							<Table.Header>
 								<Table.Row>
 									<Table.ColumnHeaderCell className="w-14 text-white/70">S/N</Table.ColumnHeaderCell>
