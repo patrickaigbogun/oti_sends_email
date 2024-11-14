@@ -166,7 +166,7 @@ export default function ListCustomers() {
 								{filteredCustomers.length === 0 ? (
 									<Table.Row>
 										<Table.Cell colSpan={5} className="text-center py-8 text-white/50">
-											No customers found <XCircle />
+											No customers found <XCircle weight="bold" size={24} />
 										</Table.Cell>
 									</Table.Row>
 								) : (
