@@ -6,6 +6,7 @@ import Logo from "./header_logo";
 import { Button, Flex, IconButton } from "@radix-ui/themes";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { House } from "@phosphor-icons/react/dist/ssr";
+import { baseUrl } from "@/utils/constants";
 
 export default function Drawer() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -46,8 +47,8 @@ export default function Drawer() {
 					<NavigationMenu.List>
 						<NavigationMenu.Item>
 							<NavigationMenu.Link
-								href="#"
-								className="block px-4 py-2 text-white "
+								href={`${baseUrl}`}
+								className="block px-4 py-2  "
 							>
 								<Button color="gray" variant="ghost" highContrast radius='full' size={'3'}>
 									<House size={24} />Home
@@ -56,8 +57,8 @@ export default function Drawer() {
 						</NavigationMenu.Item>
 						<NavigationMenu.Item>
 							<NavigationMenu.Link
-								href="#"
-								className="block px-4 py-2 text-white"
+								href={`${baseUrl}/template`}
+								className="block px-4 py-2"
 							>
 								<Button color="gray" variant="ghost" highContrast radius='full' size={'3'}>
 								<Article size={24} />Template
@@ -66,8 +67,8 @@ export default function Drawer() {
 						</NavigationMenu.Item>
 						<NavigationMenu.Item>
 							<NavigationMenu.Link
-								href="#"
-								className="block px-4 py-2 text-white"
+								href={`${baseUrl}/transactions`}
+								className="block px-4 py-2 "
 							>
 								<Button color="gray" variant="ghost" highContrast radius='full' size={'3'}>
 								<CashRegister size={24} />Transactions
@@ -76,8 +77,8 @@ export default function Drawer() {
 						</NavigationMenu.Item>
 						<NavigationMenu.Item>
 							<NavigationMenu.Link
-								href="#"
-								className="block px-4 py-2 text-white"
+								href={`${baseUrl}/history`}
+								className="block px-4 py-2 "
 							>
 								<Button color="gray" variant="ghost" highContrast radius='full' size={'3'}>
 								<ClockCounterClockwise size={24} />History
