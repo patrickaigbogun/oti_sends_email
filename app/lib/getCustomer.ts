@@ -1,7 +1,7 @@
 import { CustomerData } from "@/types/objects";
+import { baseUrl } from "@/utils/constants";
 
 export async function fetchCustomers(): Promise<CustomerData[]> {
-  const baseUrl = 'http://localhost:3000';
   // Add timestamp to prevent caching
   const timestamp = new Date().getTime();
   const apiUrl = `${baseUrl}/api/get_customer?t=${timestamp}`;

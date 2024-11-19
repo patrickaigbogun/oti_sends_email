@@ -3,6 +3,7 @@
 import { CustomerData, InvoiceData, InvoiceItem } from '@/types/objects';
 import { FormEvent, useEffect, useState } from 'react';
 import { fetchCustomers } from '@/app/lib/getCustomer';
+import { AddInvoice } from '@/app/lib/addInvoice';
 
 
 
@@ -85,19 +86,16 @@ const InvoicePage: React.FC = () => {
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
 		try {
-			const response = await fetch('/api/send_invoice', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(invoiceData)
-			});
-			if (response.ok) {
-				setStatus('Email sent successfully!');
+			const response = await AddInvoice(invoiceData)
+			
+			if (response.success) {
+				setStatus(response.message);
 			} else {
-				setStatus('Failed to send email.');
+				setStatus(response.message);
 			}
 		} catch (error) {
 			console.error('Submit error:', error);
-			setStatus('An error occurred.');
+			setStatus(`${error}: An error occurred.`);
 		}
 	};
 
