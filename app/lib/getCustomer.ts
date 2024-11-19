@@ -1,4 +1,5 @@
-import { CustomerData } from "@/types/objects";
+
+import { CustomerData } from "@/types/templates";
 import { baseUrl } from "@/utils/constants";
 
 export async function fetchCustomers(): Promise<CustomerData[]> {

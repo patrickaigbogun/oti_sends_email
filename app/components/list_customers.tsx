@@ -1,10 +1,10 @@
 'use client';
 
 import { fetchCustomers } from "@/app/lib/getCustomer";
-import { CustomerData } from "@/types/objects";
 import { Table } from '@radix-ui/themes';
 import { useEffect, useState, useCallback } from "react";
 import { XCircle, ArrowsClockwise, ListMagnifyingGlass, SortAscending, SortDescending } from "@phosphor-icons/react/dist/ssr";
+import { CustomerData } from "@/types/templates";
 
 export default function ListCustomers() {
 	const [searchTerm, setSearchTerm] = useState('');

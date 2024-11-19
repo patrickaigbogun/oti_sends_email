@@ -1,6 +1,6 @@
 'use client';
 
-import { CustomerData } from "@/types/objects";
+import { CustomerData } from "@/types/templates";
 import { FormEvent, useState } from "react";
 
 

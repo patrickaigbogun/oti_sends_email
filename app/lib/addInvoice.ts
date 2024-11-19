@@ -1,6 +1,6 @@
 'use server';
 
-import { InvoiceData } from "@/types/objects";
+import { InvoiceData } from "@/types/templates";
 import { baseUrl } from "@/utils/constants";
 import { cookies } from 'next/headers';
 

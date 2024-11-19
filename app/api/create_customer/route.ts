@@ -1,4 +1,4 @@
-import { CustomerData } from "@/types/objects";
+import { CustomerData } from "@/types/templates";
 import sql from "@/utils/neon_db_conn";
 
 

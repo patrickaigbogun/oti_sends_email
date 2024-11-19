@@ -1,9 +1,10 @@
 'use client';
 
-import { CustomerData, InvoiceData, InvoiceItem } from '@/types/objects';
+import { InvoiceItem } from '@/types/objects';
 import { FormEvent, useEffect, useState } from 'react';
 import { fetchCustomers } from '@/app/lib/getCustomer';
 import { AddInvoice } from '@/app/lib/addInvoice';
+import { InvoiceData, CustomerData } from '@/types/templates';
 
 
 

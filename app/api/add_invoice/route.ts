@@ -1,6 +1,6 @@
 
 import InvoiceEmail from '@/app/components/invoice_template';
-import { InvoiceData } from '@/types/objects';
+import { InvoiceData } from '@/types/templates';
 import sql from '@/utils/neon_db_conn';
 import { ResendConfig } from '@/utils/resend_config';
 import { NextRequest, NextResponse } from 'next/server';
