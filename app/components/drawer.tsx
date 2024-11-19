@@ -18,7 +18,7 @@ export default function Drawer() {
 				onClick={toggleDrawer}>
 				<DotsThreeCircle size={32} />
 			</button>
-			<div className={`fixed top-0 bg-black bg-opacity-40 backdrop-blur-lg shadow-lg left-0 h-full w-64 p-4 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+			<div className={`fixed top-0 bg-black bg-opacity-40 backdrop-blur-lg shadow-lg left-0 h-full w-64 p-2 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
 				<span className='flex flex-row justify-between' >
 					<Logo />
 					<button
@@ -27,7 +27,14 @@ export default function Drawer() {
 						<DotsThreeCircle size={32} />
 					</button>
 				</span>
-				<p>This is the content that will be displayed in the drawer.</p>
+				<section>
+					<ul>
+						<li>Home</li>
+						<li>Template</li>
+						<li>Orders</li>
+						<li>History</li>
+					</ul>
+				</section>
 			</div>
 		</div>
 	);
