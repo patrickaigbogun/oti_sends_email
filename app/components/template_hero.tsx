@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function TemplateHero() {
 	return (
-		<Container className="py-12 md:py-24">
+		<Container className=" md:py-24">
 			<Flex direction="column" gap="6">
 				<Box>
 					<Heading size="8" className="mb-4">Create New Templates</Heading>

@@ -28,7 +28,7 @@ export default function Drawer() {
 
 			{/* Drawer */}
 			<div
-				className={`fixed top-0 left-0 h-full w-[23%] bg-black bg-opacity-40 backdrop-blur-lg shadow-lg p-2 transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"
+				className={`fixed top-0 left-0 h-full w-[50%] md:w-[23%] bg-black bg-opacity-40 backdrop-blur-lg shadow-lg p-2 transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"
 					}`}
 			>
 				<Flex direction="row" justify="between" align="center" className="mb-4">

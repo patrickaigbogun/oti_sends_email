@@ -34,7 +34,7 @@ export default function RootLayout({
 			>
 				<ThemeProvider attribute="class">
 
-					<Theme accentColor="purple" grayColor="mauve" radius="large">
+					<Theme accentColor="gray" grayColor="olive" radius="full" >
 						<section className="mx-auto w-[95%] sm:w-[75%">
 							<Header />
 							{children}
