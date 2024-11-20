@@ -9,11 +9,11 @@ const RecentTemplates = dynamic(() => import('@/app/components/recent_templates'
 export default function CreatePage() {
 
 	return (
-		<section className="space-y-12" >
-			<section>
+		<section className="my-24 space-y-24" >
+			<section className="" >
 				<TemplateHero />
 			</section>
-			<section>
+			<section className="" >
 				<RecentTemplates />
 			</section>
 		</section>
