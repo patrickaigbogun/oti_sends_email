@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Article, CashRegister, ClockCounterClockwise, DotsThreeCircle } from "@phosphor-icons/react";
 import Logo from "./header_logo";
-import { Button, Flex, IconButton } from "@radix-ui/themes";
+import { Button, Flex } from "@radix-ui/themes";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { House } from "@phosphor-icons/react/dist/ssr";
 import { baseUrl } from "@/utils/constants";

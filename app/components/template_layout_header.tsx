@@ -1,8 +1,8 @@
-import CreateSegmentControl from "./create_segmented_control";
+import CreateSegmentControl from "./template_segment_control";
 
 
 
-export default function CreateLayoutHeader() {
+export default function TemplateLayoutHeader() {
 	return (
 		<header className="w-full flex flex-row justify-center">
 			{/* <CreateSegmentControl /> */}

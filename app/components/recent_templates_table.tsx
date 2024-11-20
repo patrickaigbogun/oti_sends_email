@@ -2,7 +2,7 @@
 
 import { Table } from "@radix-ui/themes";
 
-export default function CreateRecentsTable() {
+export default function RecentTemplatesTable() {
 	return (
 		<section className="w-full min-w-full">
 			<Table.Root

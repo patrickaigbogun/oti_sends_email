@@ -5,7 +5,7 @@ import { PlusCircle } from "@phosphor-icons/react";
 import { Heading, Text, Container, Flex, Box, Strong } from "@radix-ui/themes";
 import Link from "next/link";
 
-export default function CreateHero() {
+export default function TemplateHero() {
 	return (
 		<Container className="py-12 md:py-24">
 			<Flex direction="column" gap="6">

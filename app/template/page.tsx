@@ -1,8 +1,8 @@
 
 import dynamic from "next/dynamic";
-import CreateHero from "../components/create_hero";
+import TemplateHero from "@/app/components/template_hero";
 
-const CreateRecents = dynamic(() => import('../components/create_recents'), { ssr: false })
+const RecentTemplates = dynamic(() => import('../components/recent_templates'), { ssr: false })
 
 
 
@@ -11,10 +11,10 @@ export default function CreatePage() {
 	return (
 		<section className="space-y-12" >
 			<section>
-				<CreateHero />
+				<TemplateHero />
 			</section>
 			<section>
-				<CreateRecents />
+				<RecentTemplates />
 			</section>
 		</section>
 	);

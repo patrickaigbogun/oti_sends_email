@@ -1,11 +1,11 @@
 'use client';
 
 import { ClockCounterClockwise, House } from "@phosphor-icons/react/dist/ssr";
-import { Flex, SegmentedControl } from "@radix-ui/themes";
+import { SegmentedControl } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function CreateSegmentControl() {
+export default function TemplateSegmentControl() {
 	const router = useRouter()
 	const [value, setValue] = useState('Home');
 

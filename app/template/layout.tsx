@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import CreateLayoutHeader from "../components/create_layout_header";
+import TemplateLayoutHeader from "@/app/components/template_layout_header";
 
 
 export const metadata: Metadata = {
@@ -7,14 +7,14 @@ export const metadata: Metadata = {
 	description: "Created by Patrick Aigbogun",
 };
 
-export default function RootLayout({
+export default function TemplateLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
 	return (
 		<section className='w-full'>
-			<CreateLayoutHeader />
+			<TemplateLayoutHeader />
 			<section>
 				{children}
 			</section>

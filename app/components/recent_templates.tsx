@@ -1,18 +1,18 @@
 'use client';
 
 import { Heading } from "@radix-ui/themes";
-import CreateRecentsTable from "./create_recent_table";
+import RecentTemplatesTable from "./recent_templates_table";
 
 
 
-export default function CreateRecents() {
+export default function RecentTemplates() {
     return (
         <section>
             <Heading>
                 Recently Created Templates
             </Heading>
 
-            <CreateRecentsTable />
+            <RecentTemplatesTable />
         </section>
     )
 }
