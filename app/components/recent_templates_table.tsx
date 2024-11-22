@@ -1,8 +1,16 @@
 'use client';
 
 import { Table } from "@radix-ui/themes";
+import getRecentTemplates from "../lib/getRecentTemplates";
 
 export default function RecentTemplatesTable() {
+
+async () => {
+	const recentTemplates = await getRecentTemplates()
+
+	
+}
+
 	return (
 		<section className="w-full min-w-full">
 			<Table.Root
@@ -25,30 +33,6 @@ export default function RecentTemplatesTable() {
 						<Table.Cell>danilo@example.com</Table.Cell>
 						<Table.Cell>Developer</Table.Cell>
 						<Table.Cell>Developer</Table.Cell>
-					</Table.Row>
-
-					<Table.Row>
-						<Table.RowHeaderCell>Zahra Ambessa</Table.RowHeaderCell>
-						<Table.Cell>zahra@example.com</Table.Cell>
-						<Table.Cell>Admin</Table.Cell>
-						<Table.Cell>Developer</Table.Cell>
-
-					</Table.Row>
-
-					<Table.Row>
-						<Table.RowHeaderCell>Jasper Eriksson</Table.RowHeaderCell>
-						<Table.Cell>jasper@example.com</Table.Cell>
-						<Table.Cell>Developer</Table.Cell>
-						<Table.Cell>Developer</Table.Cell>
-
-					</Table.Row>
-
-					<Table.Row>
-						<Table.RowHeaderCell>Jasper Eriksson</Table.RowHeaderCell>
-						<Table.Cell>jasper@example.com</Table.Cell>
-						<Table.Cell>Developer</Table.Cell>
-						<Table.Cell>Developer</Table.Cell>
-
 					</Table.Row>
 				</Table.Body>
 			</Table.Root>
