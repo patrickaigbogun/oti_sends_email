@@ -22,3 +22,14 @@ export interface InvoiceData {
 	shipping: number;
 	total: number;
 }
+
+export type Template ={
+    identifier:string;
+    templateCategory:string;
+    customerEmail:string;
+    createdAt:Date;
+}
+
+export type Templates = {
+	template: Template[];
+}
