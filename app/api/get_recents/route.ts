@@ -1,43 +1,51 @@
 import { NextResponse } from 'next/server';
 import sql from "@/utils/neon_db_conn";
+import { Template } from '@/types/templates';
 
+// Disable caching for dynamic API responses
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+
 export async function GET() {
+  try {
+    // Fetch recent templates from the database
+    const recentTemplates = (await sql`
+      SELECT 
+        identifier, 
+        template_category, 
+        customer_email, 
+        created_at 
+      FROM templates 
+      ORDER BY created_at DESC
+    `) as unknown as Template[]; // Explicitly cast the result to Template[]
 
-	try {
-		const recentTemplates = await sql`
-            SELECT 
-                identifier, 
-                template_category, 
-                customer_email as customerEmail, 
-                created_at 
-            FROM customers 
-            ORDER BY created_at DESC
-        `;
+    console.log('Fetched templates:', recentTemplates);
 
-		return new NextResponse(JSON.stringify(recentTemplates), {
-			status: 200,
-			headers: {
-				'Content-Type': 'application/json',
-				'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-				'Pragma': 'no-cache',
-				'Expires': '0',
-			},
-		});
-	} catch (error) {
-		console.error('Error fetching recent templates:', error);
-		return NextResponse.json(
-			{ error: 'Failed to fetch recent templates' },
-			{
-				status: 500,
-				headers: {
-					'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-					'Pragma': 'no-cache',
-					'Expires': '0',
-				},
-			}
-		);
-	}
+    // Return the templates as JSON with proper headers
+    return new NextResponse(JSON.stringify(recentTemplates), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+      },
+    });
+  } catch (error) {
+    console.error('Error fetching recent templates:', error);
+
+    // Return an error response with additional details
+    return NextResponse.json(
+      { error: 'Failed to fetch recent templates', details: error },
+      {
+        status: 500,
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+        },
+      }
+    );
+  }
 }

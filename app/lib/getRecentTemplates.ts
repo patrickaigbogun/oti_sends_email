@@ -1,12 +1,12 @@
 'use server';
 
-import { Templates } from "@/types/templates";
+import { Template } from "@/types/templates";
 import { baseUrl } from "@/utils/constants";
 
 
 
 
-export default async function getRecentTemplates(): Promise<Templates> {
+export default async function getRecentTemplates(): Promise<Template[]> {
 	// Add timestamp to prevent caching
 	const timestamp = new Date().getTime();
 	const apiUrl = `${baseUrl}/api/get_recents?t=${timestamp}`;
@@ -28,7 +28,8 @@ export default async function getRecentTemplates(): Promise<Templates> {
 		}
 
 		const data = await response.json();
-		return data as Templates;
+		console.log(data)
+		return data as Template[];
 	} catch (error) {
 		console.error('Error fetching customers:', error);
 		throw new Error('Failed to fetch customers. Please check your API configuration.');

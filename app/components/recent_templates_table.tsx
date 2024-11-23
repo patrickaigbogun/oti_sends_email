@@ -1,15 +1,12 @@
 'use client';
 
 import { Table } from "@radix-ui/themes";
-import getRecentTemplates from "../lib/getRecentTemplates";
+import { RecentTemplatesTableProps } from "@/types/templates";
 
-export default function RecentTemplatesTable() {
 
-async () => {
-	const recentTemplates = await getRecentTemplates()
 
-	
-}
+export default function RecentTemplatesTable({templates}: RecentTemplatesTableProps) {
+
 
 	return (
 		<section className="w-full min-w-full">
@@ -28,12 +25,14 @@ async () => {
 				</Table.Header>
 
 				<Table.Body>
-					<Table.Row>
-						<Table.RowHeaderCell>Danilo Sousa</Table.RowHeaderCell>
-						<Table.Cell>danilo@example.com</Table.Cell>
-						<Table.Cell>Developer</Table.Cell>
-						<Table.Cell>Developer</Table.Cell>
-					</Table.Row>
+					{templates.map((template)=>(
+						<Table.Row key={template.identifier}>
+							<Table.RowHeaderCell>{template.template_category}</Table.RowHeaderCell>
+							<Table.Cell>{template.identifier}</Table.Cell>
+							<Table.Cell>{template.customer_email}</Table.Cell>
+							<Table.Cell>{new Date(template.created_at).toLocaleString()}</Table.Cell>
+						</Table.Row>
+					))}
 				</Table.Body>
 			</Table.Root>
 		</section>

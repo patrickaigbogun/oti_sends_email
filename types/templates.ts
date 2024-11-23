@@ -1,14 +1,14 @@
 import { InvoiceItem } from "./objects";
 
 export interface CustomerData {
-    name: string;
-    email: string;
-    phoneNo: string;
+	name: string;
+	email: string;
+	phoneNo: string;
 }
 
 export interface InvoiceData {
 	invoiceNo: string;
-	email:CustomerData['email'];
+	email: CustomerData['email'];
 	dueDate: string;
 	amountDue: number;
 	message: string;
@@ -23,13 +23,17 @@ export interface InvoiceData {
 	total: number;
 }
 
-export type Template ={
-    identifier:string;
-    templateCategory:string;
-    customerEmail:string;
-    createdAt:Date;
+export type Template = {
+	identifier: string;
+	template_category: string;
+	customer_email: string;
+	created_at: Date;
 }
 
 export type Templates = {
-	template: Template[];
+	templates: Template[];
+}
+
+export type RecentTemplatesTableProps={
+	templates: Template[];
 }
