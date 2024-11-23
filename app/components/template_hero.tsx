@@ -20,7 +20,7 @@ export default function CreateHero() {
 					</span>
 				</Flex>
 				<Flex gap="4" wrap="wrap">
-					<Link href={`${baseUrl}/template/customer`} className="flex-1 min-w-[250px]">
+					<Link href={`${baseUrl}/template/customers`} className="flex-1 min-w-[250px]">
 						<Box className="bg-gradient-to-br from-teal-400 to-gray-800 h-48 rounded-xl overflow-hidden group">
 							<Flex
 								align="center"
