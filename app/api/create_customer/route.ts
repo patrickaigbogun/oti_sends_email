@@ -19,7 +19,7 @@ export async function POST(req: Request) {
 				template_data JSONB NOT NULL,
 				created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
 				modified_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-			)	
+			);	
 		`;
 
 		await sql`

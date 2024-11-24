@@ -78,7 +78,7 @@ async function saveInvoiceToDatabase(formData: InvoiceData) {
 				customer_email VARCHAR(255),
 				template_data JSONB NOT NULL,
 				created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-				modified_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,				
+				modified_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP			
 			);
 		`;
 
