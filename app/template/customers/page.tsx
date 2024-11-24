@@ -1,9 +1,12 @@
 import dynamic from "next/dynamic"
 import CreateCustomers from "@/app/components/create_customers"
+import { getRecentCustomers } from "@/app/lib/getCustomer";
+
 
 const ListCustomers = dynamic(() => import('@/app/components/list_customers'), { ssr: false })
-
+const customers = await getRecentCustomers()
 export default function CustomerPage() {
+
 
 	return (
 		<section >
@@ -13,7 +16,7 @@ export default function CustomerPage() {
 			<h1 className="text-2xl" >Saved customers</h1>
 			<p className="font-light" ><i>Saved customers can be set as recipients of invoices, reciepts, notice, etc</i></p>
 			</span>
-			{/* <ListCustomers /> */}
+			<ListCustomers customers={customers}/>
 		</section>
 	)
 }

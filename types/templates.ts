@@ -10,6 +10,11 @@ export type Customers ={
 	customers: CustomerData[];
 }
 
+export type RecentCustomersTableProps = {
+	customers: CustomerData[];
+}
+
+
 export interface InvoiceData {
 	invoiceNo: string;
 	email: CustomerData['email'];
@@ -41,3 +46,4 @@ export type Templates = {
 export type RecentTemplatesTableProps={
 	templates: Template[];
 }
+

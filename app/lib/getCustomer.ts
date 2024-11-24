@@ -1,11 +1,11 @@
 
 import { CustomerData } from "@/types/templates";
-import { baseUrl } from "@/utils/constants";
+import { baseUrl, timeStamp } from "@/utils/constants";
 
 export async function getRecentCustomers(): Promise<CustomerData[]> {
   // Add timestamp to prevent caching
-  const timestamp = new Date().getTime();
-  const apiUrl = `${baseUrl}/api/get_customer?t=${timestamp}`;
+  
+  const apiUrl = `${baseUrl}/api/get_recent_customers?t=${timeStamp}`;
 
   try {
     const response = await fetch(apiUrl, { 
