@@ -13,7 +13,7 @@ export default function TemplateLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<section className='w-full'>
+		<section className='w-full py-10'>
 			<TemplateLayoutHeader />
 			<section>
 				{children}
