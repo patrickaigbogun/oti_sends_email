@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import sql from "@/utils/neon_db_conn";
+import { CustomerData } from '@/types/templates';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -8,13 +9,19 @@ export async function GET() {
     
     try {
 
-        const recentCustomers = await sql`
-            SELECT * FROM templates 
+        const recentCustomers = (await sql`
+            SELECT template_data
+            FROM templates
             WHERE template_category = 'customer'
-            ORDER BY created_at DESC limit 7
-        `;
+            ORDER BY created_at DESC
+            LIMIT 7
+        `) as { template_data: CustomerData }[];
 
-        return new NextResponse(JSON.stringify(recentCustomers), {
+        // Extract the JSON objects into a plain array
+        const customers = recentCustomers.map((row) => row.template_data);
+        console.log(customers)
+
+        return new NextResponse(JSON.stringify(customers), {
             status: 200,
             headers: {
                 'Content-Type': 'application/json',
