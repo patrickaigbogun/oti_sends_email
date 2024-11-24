@@ -1,26 +1,26 @@
 'use client';
 
 import { CustomerData } from "@/types/templates";
-import { FormEvent, useState } from "react";
-
+import { FormEvent, useState, ChangeEvent } from "react";
+import { TextField, Button, Flex, Text, Box } from "@radix-ui/themes";
+import { Envelope, User, Phone } from "@phosphor-icons/react";
 
 export default function CreateCustomers() {
-
 	const [status, setStatus] = useState<string | null>(null);
-	const [customerData, setcustomerData] = useState<CustomerData>({
+	const [customerData, setCustomerData] = useState<CustomerData>({
 		name: '',
 		email: '',
 		phoneNo: ''
 	});
 
-	const handleInputChange = (field: keyof CustomerData, value: string): void => {
-		setcustomerData(prev => ({
+	const handleInputChange = (field: keyof CustomerData) => (e: ChangeEvent<HTMLInputElement>): void => {
+		setCustomerData(prev => ({
 			...prev,
-			[field]: value
+			[field]: e.target.value
 		}));
 	};
 
-	const handleSubmit = async (e: FormEvent) => {
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		try {
 			const response = await fetch('/api/create_customer', {
@@ -38,55 +38,68 @@ export default function CreateCustomers() {
 			setStatus('Oops! Try that again');
 		}
 	};
+
 	return (
-		<div className="mx-auto w-[90%] sm:w-[70%] my-10 text-white font-bold justify-center flex flex-col p-5 border border-gray-500 rounded-xl bg-white/5">
-			<form onSubmit={handleSubmit} 
-			className="space-y-6 "
-			>
-				{status && <p>{status}</p>}
-				<section className="flex flex-col space-y-2" >
-					<label htmlFor="email">Customers Email</label>
-					<input
-						className="p-2 rounded-xl outline outline-gray-500 hover:outline-gray-300 focus:outline-gray-300 focus:outline"
-						name="email"
+		<Box className="w-full max-w-md mx-auto my-10 p-6 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 text-white">
+			<form onSubmit={handleSubmit} className="space-y-6">
+				{status && (
+					<Text className="text-center font-medium" color={status.includes('Success') ? 'green' : 'red'}>
+						{status}
+					</Text>
+				)}
+				<Flex direction="column" gap="2">
+					<Text as="label" htmlFor="email" size="2" weight="bold">
+						Customer's Email
+					</Text>
+					<TextField.Root id="email"
 						type="email"
 						value={customerData.email}
 						placeholder="customer@gmail.com"
-						onChange={(e) => handleInputChange('email', e.target.value)}
-
-					/>
-				</section>
-				<section className="flex flex-col space-y-2" >
-					<label htmlFor="name" >Customers name</label>
-					<input
-						className="p-2 rounded-xl outline outline-gray-500 hover:outline-gray-300 focus:outline-gray-300 focus:outline"
-						name="name"
+						onChange={handleInputChange('email')}
+					>
+						<TextField.Slot>
+							<Envelope size={20} />
+						</TextField.Slot>
+					</TextField.Root>
+				</Flex>
+				<Flex direction="column" gap="2">
+					<Text as="label" htmlFor="name" size="2" weight="bold">
+						Customer's Name
+					</Text>
+					<TextField.Root
+						id="name"
 						type="text"
 						value={customerData.name}
 						placeholder="Customer INC"
-						onChange={(e) => handleInputChange('name', e.target.value)}
+						onChange={handleInputChange('name')}>
+						<TextField.Slot>
+							<User size={20} />
+						</TextField.Slot>
 
-					/>
-				</section>
-				<section className="flex flex-col space-y-2" >
-					<label htmlFor="tel" >Customers phone</label>
-					<input
-						className="p-2 rounded-xl outline outline-gray-500 hover:outline-gray-300 focus:outline-gray-300 focus:outline"
-						name="tel"
+
+
+					</TextField.Root>
+				</Flex>
+				<Flex direction="column" gap="2">
+					<Text as="label" htmlFor="tel" size="2" weight="bold">
+						Customer's Phone
+					</Text>
+					<TextField.Root
+						id="tel"
 						type="tel"
 						value={customerData.phoneNo}
 						placeholder="09090909"
-						onChange={(e) => handleInputChange('phoneNo', e.target.value)}
+						onChange={handleInputChange('phoneNo')}>
+						<TextField.Slot>
+							<Phone size={20} />
+						</TextField.Slot>
 
-					/>
-				</section>
-				<button
-				className="text-white border p-3 rounded-xl"
-				type="submit"
-				>
+					</TextField.Root>
+				</Flex>
+				<Button type="submit" className="w-full bg-gradient-to-r from-teal-400 to-blue-500 hover:from-teal-500 hover:to-blue-600 transition-colors">
 					Save this Customer
-				</button>
+				</Button>
 			</form>
-		</div>
+		</Box>
 	);
 }
