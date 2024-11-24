@@ -18,7 +18,7 @@ export async function GET() {
         created_at 
       FROM templates 
       ORDER BY created_at DESC limit 7
-    `) as unknown as Template[]; // Explicitly cast the result to Template[]
+    `) as Template[]; // Explicitly cast the result to Template[]
 
     console.log('Fetched templates:', recentTemplates);
 

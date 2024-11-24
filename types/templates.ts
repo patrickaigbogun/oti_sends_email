@@ -6,6 +6,10 @@ export interface CustomerData {
 	phoneNo: string;
 }
 
+export type Customers ={
+	customers: CustomerData[];
+}
+
 export interface InvoiceData {
 	invoiceNo: string;
 	email: CustomerData['email'];

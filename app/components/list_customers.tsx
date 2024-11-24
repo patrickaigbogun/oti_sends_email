@@ -1,6 +1,6 @@
 'use client';
 
-import { fetchCustomers } from "@/app/lib/getCustomer";
+import { getRecentCustomers } from "@/app/lib/getCustomer";
 import { Table } from '@radix-ui/themes';
 import { useEffect, useState, useCallback } from "react";
 import { XCircle, ArrowsClockwise, ListMagnifyingGlass, SortAscending, SortDescending } from "@phosphor-icons/react/dist/ssr";
@@ -18,7 +18,7 @@ export default function ListCustomers() {
 		setLoading(true);
 		setError(null);
 		try {
-			const data = await fetchCustomers();
+			const data = await getRecentCustomers();
 			setCustomers(data);
 		} catch (error) {
 			setError("Failed to load customers. Please try again.");

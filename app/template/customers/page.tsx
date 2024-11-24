@@ -13,7 +13,7 @@ export default function CustomerPage() {
 			<h1 className="text-2xl" >Saved customers</h1>
 			<p className="font-light" ><i>Saved customers can be set as recipients of invoices, reciepts, notice, etc</i></p>
 			</span>
-			<ListCustomers />
+			{/* <ListCustomers /> */}
 		</section>
 	)
 }

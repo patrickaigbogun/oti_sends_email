@@ -1,25 +1,20 @@
 import { NextResponse } from 'next/server';
 import sql from "@/utils/neon_db_conn";
-// import { headers } from 'next/headers';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export async function GET() {
-    // const headersList = headers();
     
     try {
-        const customers = await sql`
-            SELECT 
-                email, 
-                name, 
-                phone_no as "phoneNo", 
-                created_at 
-            FROM customers 
-            ORDER BY created_at DESC
+
+        const recentCustomers = await sql`
+            SELECT * FROM templates 
+            WHERE template_category = 'customer'
+            ORDER BY created_at DESC limit 7
         `;
 
-        return new NextResponse(JSON.stringify(customers), {
+        return new NextResponse(JSON.stringify(recentCustomers), {
             status: 200,
             headers: {
                 'Content-Type': 'application/json',
