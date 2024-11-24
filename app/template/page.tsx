@@ -9,7 +9,7 @@ export default  async function TemplatePage() {
 	const  templates = await getRecentTemplates()
 
 	return (
-		<section className="my-24 space-y-28" >
+		<section className=" space-y-28" >
 			<section className="" >
 				<TemplateHero />
 			</section>

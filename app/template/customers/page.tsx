@@ -3,7 +3,7 @@ import CreateCustomers from "@/app/components/create_customers"
 import { getRecentCustomers } from "@/app/lib/getCustomer";
 
 
-const ListCustomers = dynamic(() => import('@/app/components/list_customers'), { ssr: false })
+const ListCustomers = dynamic(() => import('@/app/components/recent_customers_tables'), { ssr: false })
 const customers = await getRecentCustomers()
 export default function CustomerPage() {
 
