@@ -3,12 +3,10 @@
 'use client';
 
 import { Flex, Heading, Link, Box, Callout } from "@radix-ui/themes";
-import RecentTemplatesTable from "./recent_templates_table";
 import { baseUrl } from "@/utils/constants";
 import { ArrowSquareOut, Info } from "@phosphor-icons/react";
-import { Templates } from "@/types/templates";
 
-export default function RecentTemplates() {
+export default function RecentTemplatesHero() {
 
 	return (
 		<Flex direction="column" gap="8">

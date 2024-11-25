@@ -22,6 +22,7 @@ export async function POST(req: NextRequest) {
 			subject: `Invoice #${formData.invoiceNo}`,
 			react: InvoiceEmail(formData),
 		});
+		console.log(data)
 
 		if (error) {
 			return NextResponse.json({

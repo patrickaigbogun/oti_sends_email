@@ -44,7 +44,7 @@ export async function AddInvoice(invoiceData: InvoiceData) {
 	  
 	  return {
 		success: false,
-		message: 'Invoice could not be processed'
+		message: `Invoice could not be processed: ${error}`
 	  };
 	}
   }

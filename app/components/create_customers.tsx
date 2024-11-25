@@ -49,7 +49,7 @@ export default function CreateCustomers() {
 				)}
 				<Flex direction="column" gap="2">
 					<Text as="label" htmlFor="email" size="2" weight="bold">
-						Customer's Email
+						Customer&apos;s Email
 					</Text>
 					<TextField.Root id="email"
 						type="email"
@@ -65,7 +65,7 @@ export default function CreateCustomers() {
 				</Flex>
 				<Flex direction="column" gap="2">
 					<Text as="label" htmlFor="name" size="2" weight="bold">
-						Customer's Name
+						Customer&apos;s Name
 					</Text>
 					<TextField.Root
 						id="name"
@@ -85,7 +85,7 @@ export default function CreateCustomers() {
 				</Flex>
 				<Flex direction="column" gap="2">
 					<Text as="label" htmlFor="tel" size="2" weight="bold">
-						Customer's Phone
+						Customer&apos;s Phone
 					</Text>
 					<TextField.Root
 						id="tel"

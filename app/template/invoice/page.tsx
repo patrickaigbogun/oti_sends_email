@@ -2,7 +2,7 @@
 
 import { InvoiceItem } from '@/types/objects';
 import { FormEvent, useEffect, useState } from 'react';
-import { fetchCustomers } from '@/app/lib/getCustomer';
+import { getRecentCustomers } from '@/app/lib/getCustomer';
 import { AddInvoice } from '@/app/lib/addInvoice';
 import { InvoiceData, CustomerData } from '@/types/templates';
 
@@ -102,7 +102,7 @@ const InvoicePage: React.FC = () => {
 
 	const fetchCustomerEmails = async () => {
 		try {
-			const customers: CustomerData[] = await fetchCustomers();
+			const customers: CustomerData[] = await getRecentCustomers();
 			const emails = customers.map(customer => customer.email);
 			setCustomerEmails(emails);
 		} catch (error) {
