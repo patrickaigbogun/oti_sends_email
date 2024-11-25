@@ -56,6 +56,7 @@ export default function CreateCustomers() {
 						value={customerData.email}
 						placeholder="customer@gmail.com"
 						onChange={handleInputChange('email')}
+						required
 					>
 						<TextField.Slot>
 							<Envelope size={20} />
@@ -71,7 +72,9 @@ export default function CreateCustomers() {
 						type="text"
 						value={customerData.name}
 						placeholder="Customer INC"
-						onChange={handleInputChange('name')}>
+						onChange={handleInputChange('name')}
+						required
+						>
 						<TextField.Slot>
 							<User size={20} />
 						</TextField.Slot>
@@ -89,7 +92,9 @@ export default function CreateCustomers() {
 						type="tel"
 						value={customerData.phoneNo}
 						placeholder="09090909"
-						onChange={handleInputChange('phoneNo')}>
+						onChange={handleInputChange('phoneNo')}
+						required
+						>
 						<TextField.Slot>
 							<Phone size={20} />
 						</TextField.Slot>

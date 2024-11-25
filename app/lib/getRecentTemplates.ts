@@ -31,7 +31,7 @@ export default async function getRecentTemplates(): Promise<Template[]> {
 		console.log(data)
 		return data as Template[];
 	} catch (error) {
-		console.error('Error fetching customers:', error);
-		throw new Error('Failed to fetch customers. Please check your API configuration.');
+		console.error('Error fetching templates:', error);
+		throw new Error('Failed to fetch templates. Please check your API configuration.');
 	}
 }
