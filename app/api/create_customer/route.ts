@@ -41,7 +41,7 @@ export async function POST(req: Request) {
 
 			if (code === '23505') {
 				if (constraint?.includes('email')) {
-					return new Response(JSON.stringify({ error: 'A customer with this email already exists' }), { status: 200 });
+					return new Response(JSON.stringify({ error: 'A customer with this email already exists' }), { status: 409 });
 				}
 				if (constraint?.includes('name')) {
 					return new Response(JSON.stringify({ error: 'All customers need to have unique names' }), { status: 409 });

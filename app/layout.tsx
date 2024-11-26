@@ -5,6 +5,7 @@ import { ThemeProvider } from 'next-themes';
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/header";
+import ToastProvider from "./components/toast_provider";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -35,10 +36,12 @@ export default function RootLayout({
 				<ThemeProvider attribute="class">
 
 					<Theme accentColor="gray" grayColor="olive" radius="full" >
-						<section className="mx-auto w-[95%] sm:w-[75%">
-							<Header />
-							{children}
-						</section>
+						<ToastProvider>
+							<section className="mx-auto w-[95%] sm:w-[75%">
+								<Header />
+								{children}
+							</section>
+						</ToastProvider>
 					</Theme>
 				</ThemeProvider >
 
