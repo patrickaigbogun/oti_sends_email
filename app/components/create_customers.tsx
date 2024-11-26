@@ -46,7 +46,7 @@ export default function CreateCustomers() {
 					transition: Bounce,
 				});
 			} else {
-				toast.warning('Customer was not saved!', {
+				toast.error('Customer was not saved!', {
 					position: "top-center",
 					autoClose: 5000,
 					hideProgressBar: false,
