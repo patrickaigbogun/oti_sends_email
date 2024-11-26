@@ -5,13 +5,13 @@ import { FormEvent, useEffect, useState } from 'react';
 import { getRecentCustomers } from '@/app/lib/getCustomer';
 import { AddInvoice } from '@/app/lib/addInvoice';
 import { InvoiceData, CustomerData } from '@/types/templates';
+import { Bounce, toast } from 'react-toastify';
 
 
 
 
 
 const InvoicePage: React.FC = () => {
-	const [status, setStatus] = useState<string | null>(null);
 	const [customerEmails, setCustomerEmails] = useState<string[]>([]);
 	const [invoiceData, setInvoiceData] = useState<InvoiceData>({
 		invoiceNo: '',
@@ -90,13 +90,46 @@ const InvoicePage: React.FC = () => {
 			const response = await AddInvoice(invoiceData)
 			
 			if (response.success) {
-				setStatus(response.message);
+				// setStatus(response.message);
+				toast.success(response.message, {
+					position: "top-center",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "dark",
+					transition: Bounce,
+				});
 			} else {
-				setStatus(response.message);
+				// setStatus(response.message);
+				toast.error(response.message, {
+					position: "top-center",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "dark",
+					transition: Bounce,
+				})
 			}
 		} catch (error) {
 			console.error('Submit error:', error);
-			setStatus(`${error}: An error occurred.`);
+			toast.error(`An error occurred: ${error}`, {
+				position: "top-center",
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "dark",
+				transition: Bounce,
+			})
+			// setStatus(`${error}: An error occurred.`);
 		}
 	};
 
@@ -122,7 +155,6 @@ const InvoicePage: React.FC = () => {
 					{/* Header Section */}
 					<div className="flex justify-between items-start mb-8">
 						<div>
-							{status && <p>{status}</p>}
 							<div className="w-40 h-16 bg-gray-200 flex items-center justify-center mb-4">
 								<span className="text-gray-500">Your Logo</span>
 							</div>
